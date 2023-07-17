@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="49.862 125.609 31.154 26.15" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Akaya Telivigala">@import url(https://fonts.googleapis.com/css2?family=Akaya+Telivigala%3Aital%2Cwght%400%2C400&amp;display=swap);</style>
+  </defs>
+  <g>
+    <path stroke-width="0" d="M 77.511 128.13 C 84.024 132.553 80.81 149.295 73.211 151.353 C 64.18 153.799 48.285 144.784 49.989 135.584 C 51.719 126.238 69.648 122.791 77.511 128.13 Z" style="stroke-width: 2px; paint-order: fill; stroke: rgb(160, 160, 162); fill: rgb(226, 226, 226);"/>
+    <text style="fill: rgb(51, 51, 51); font-family: &quot;Akaya Telivigala&quot;; font-size: 16.1px; white-space: pre;" x="52.008" y="143.137">SSA</text>
+  </g>
+</svg>
