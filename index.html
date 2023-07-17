@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+      body { font-family: 'Open Sans', sans-serif; text-align: justify;}
+      .title { text-align: center; font-size: 32px; font-weight: bold; margin: 20px 0; }
+      .authors { text-align: center; margin-bottom: 20px; }
+      .author { display: inline-block; margin: 0 10px; }
+      .abstract { background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+      .image { display: block; margin: 0 auto 20px; border: 1px solid #ccc; }
+      .caption { font-style: italic; text-align: center; }
+      .links { text-align: center; margin-bottom: 20px; }
+      .link { display: inline-block; font-size: 24px; margin: 0 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        The Information Pathways Hypothesis: Transformers are Dynamic Self-Ensembles 
+      </div>
+      
+      <div class="authors">
+        <div class="author">
+          <a href="https://shamim-hussain.github.io/">
+            Md Shamim Hussain
+          </a>
+          <div>Rensselaer Polytechnic Institute</div>
+        </div>
+        <div class="author">
+          <a href="https://www.cs.rpi.edu/~zaki/">
+            Mohammed J. Zaki
+          </a>
+          <div>Rensselaer Polytechnic Institute</div>
+        </div>
+        <div class="author">
+          <a href="https://researcher.watson.ibm.com/researcher/view.php?person=us-dharmash">Dharmashankar Subramanian</a>
+          <div>IBM T. J. Watson Research Center</div>
+        </div>
+      </div>
+      
+      <div class="links">
+        <div class="link">
+          <a href="https://arxiv.org/abs/2306.01705">
+            <img src="img/paper.png" height="80">
+            <h4><strong>Paper</strong></h4>
+          </a>
+        </div>
+        <div class="link">
+          <a href="https://github.com/shamim-hussain/ssa">
+            <img src="img/code.png" height="80">
+            <h4><strong>Code</strong></h4>
+          </a> 
+        </div>
+      </div>
+
+      <div class="text-center">
+        <img src="img/intro.png" class="img-fluid" style="max-width: 500px;">
+      </div>
+    
+      <div class="abstract">
+        <p>
+          Transformers use dense self-attention, allowing flexible all-to-all connectivity between input elements.
+          This provides great expressive power but also quadratic computational cost.
+          Over multiple layers, the number of possible connectivity patterns grows exponentially.
+          However, we hypothesize that only a small subset of sparsely connected sub-networks within the transformer, called information pathways, are essential for good performance.
+          In our paper, we provide a new perspective on transformers based on these information pathways and show how to leverage inherent sparsity for efficiency, especially during training.
+        </p>
+      </div>
+
+      <h2>Overview</h2>
+      <p>
+        We put forward the "information pathways hypothesis" - the idea that transformers inherently contain many sparsely connected sub-networks or pathways.
+        The full model can be seen as an ensemble of subsets of these pathways.
+      </p>
+
+      <p>
+        <div class="text-center">
+          <img src="img/hypothesis.png" class="img-fluid" style="max-width: 500px;">
+        </div>
+      </p>
+
+      <p>
+        Based on this viewpoint, we develop a technique called Stochastically Subsampled Self-Attention (SSA) to sample pathways during training for efficiency (in terms of both memory and compute) and regularization.
+        Surprisingly, we show that performing SSA during inference further boosts performance by forming model sub-ensembles.
+      </p>
+      
+      <h2>Method</h2>
+      <p>
+        <div class="text-center">
+          <img src="img/ssa.png" class="img-fluid" style="max-width: 500px;">
+        </div>
+      </p>
+      <p>
+        The key innovations we propose are:
+        <ul>
+          <li>
+            SSA for sampling subset of pathways each iteration to reduce cost. We use a locally-biased sampling to prioritize key connections.
+          </li>
+          <li>
+            After sparse training, a short fine-tuning step to consolidate all pathways before inference.
+          </li>
+          <li>
+            Performing SSA during inference to create self-ensembles for better predictions.
+          </li>
+        </ul>
+      </p>
+
+      <h2>Experiments</h2>
+
+      <p>
+        We demonstrate the effectiveness of our proposals through extensive experiments on language modeling, image classification and graph regression tasks.
+        Our results exhibit 4-8x reduced self-attention cost and improved generalization with SSA.
+        Self-ensembling can further improve generalization during inference.
+      </p>
+
+      <h2>Conclusion</h2>
+
+      <p>
+        Our paper provides a new perspective on viewing transformers as dynamic ensembles of information pathways. This viewpoint has important theoretical and practical implications:
+        <ul>
+          <li>
+            Our efficient training method via SSA enables scaling transformers to much longer sequences.
+          </li>
+          <li>
+            It opens up analysis into precisely characterizing and isolating the critical (dynamic) pathways versus redundant ones.
+            This can lead to inherently sparse transformer architectures.
+          </li>
+          <li>
+            The ensemble interpretation of transformers motivates development of advanced methods for sampling diverse, interpretable sub-models.
+          </li>
+          <li>
+            Self-ensembling through sub-sampled attention is a broadly applicable technique to improve transformer robustness.
+          </li>
+        </ul>
+        We are excited about future work that can build on the perspectives and techniques proposed in our paper.
+      </p>
+
+      <h2>Citation</h2>
+      <div class="citation">
+        <code>
+          @article{hussain2022information,
+            <br> &nbsp;title={The Information Pathways Hypothesis: Transformers are Dynamic Self-Ensembles},
+            <br> &nbsp;author={Hussain, Md Shamim and Zaki, Mohammed J and Subramanian, Dharmashankar},
+            <br> &nbsp;journal={arXiv preprint arXiv:2306.01705},
+            <br> &nbsp;year={2023}
+            <br> }
+        </code>
+      </div>
+
+      <h2>Acknowledgement</h2>
+      <div class="acknowledgement">
+        <p>
+          This work was supported by the Rensselaer-IBM AI Research Collaboration, part of the IBM AI Horizons Network.
+        </p>
+      </div>
+    </div>
+
+    <footer style="background-color: #f8f9fa; padding: 20px 0; border-top: 1px solid #eee;">
+      <div class="container" style="text-align: center; font-style: italic;">
+        <div class="row">
+          <div class="col-12"> © 2023 The Authors. Published by Association for Computing Machinery. </div>
+        </div>
+        <div class="row">
+          <div class="col-12"> Originally published at the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
